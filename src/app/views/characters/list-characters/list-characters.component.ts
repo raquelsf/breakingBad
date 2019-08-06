@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {CharactersService} from '../../../services/characters/characters.service';
 import {Characters} from '../../../interfaces/characters/characters';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-characters',
@@ -10,7 +11,9 @@ import {Characters} from '../../../interfaces/characters/characters';
 export class ListCharactersComponent implements OnInit {
   public characters = [{} as Characters];
   public pagination = [];
-  constructor(private charactersService: CharactersService) {
+  constructor(private charactersService: CharactersService, private translateService: TranslateService) {
+
+  this.translateService.setDefaultLang('pt-br');
   }
 
   ngOnInit() {

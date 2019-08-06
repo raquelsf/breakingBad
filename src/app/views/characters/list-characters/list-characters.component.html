@@ -9,8 +9,12 @@
     <div class="col-12">
       <div class="card-columns">
         <div class="card" *ngFor="let character of characters" style="min-height: 450px !important;">
+          <div [class]="character.status">
+            <p>{{character.status | translate}}</p>
+          </div>
           <img class="card-img-top" src="{{character.img}}" alt="Card image cap" style="height: 420px">
           <div class="card-body align">
+
             <h5 class="card-title">{{character.name}}</h5>
             <p class="card-text">
               <small class="text-muted">{{character.birthday}}</small>
