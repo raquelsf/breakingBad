@@ -1,9 +1,9 @@
 <div class="container-dark">
-  <div class="row" style="margin-bottom: 3%">
-    <div class="col-6">
+  <div class="container-header">
+    <div>
       <h3>Personagens </h3>
     </div>
-    <div class="col-6" style="text-align: end;">
+    <div>
       <span>Filtrar por: </span>
       <button type="button" class="btn btn-outline-success" (click)="filterCharacters('Alive')">Vivo</button>
       <button type="button" class="btn btn-outline-danger" (click)="filterCharacters('Deceased')">Morto</button>
@@ -11,31 +11,31 @@
     </div>
   </div>
 
+  <div class="container-cards">
+    <div class="card-columns">
+      <div class="card" *ngFor="let character of characters" style="min-height: 450px !important;">
+        <div [class]="character.status">
+          <p>{{character.status | translate}}</p>
+        </div>
+        <img class="card-img-top" src="{{character.img}}" alt="Card image cap" style="height: 420px">
+        <div class="card-body align">
 
-  <div class="row">
-    <div class="col-12">
-      <div class="card-columns">
-        <div class="card" *ngFor="let character of characters" style="min-height: 450px !important;">
-          <div [class]="character.status">
-            <p>{{character.status | translate}}</p>
-          </div>
-          <img class="card-img-top" src="{{character.img}}" alt="Card image cap" style="height: 420px">
-          <div class="card-body align">
-
-            <h5 class="card-title">{{character.name}}</h5>
-            <p class="card-text">
-              <small class="text-muted">{{character.birthday}}</small>
-            </p>
-            <p class="card-text">
-              <small class="text-muted" *ngFor="let occupation of character.occupation">{{occupation}}.</small>
-            </p>
-          </div>
+          <h5 class="card-title">{{character.name}}</h5>
+          <p class="card-text">
+            <small class="text-muted">{{character.birthday}}</small>
+          </p>
+          <p class="card-text">
+            <small class="text-muted" *ngFor="let occupation of character.occupation">{{occupation}}.</small>
+          </p>
         </div>
       </div>
     </div>
-    <div class="row" style="margin: 0 auto;">
-      <div class="col-12" style="text-align: center">
-        <span style="margin: 5%; cursor: pointer" *ngFor="let page of pagination;index as i" (click)="listCharacters(page.limit, page.offset)">{{i+1}}</span>
-      </div>
+  </div>
+
+  <div style="margin: 0 auto;">
+    <div>
+      <span style="margin: 5%; cursor: pointer" *ngFor="let page of pagination;index as i"
+            (click)="listCharacters(page.limit, page.offset)">{{i + 1}}</span>
     </div>
   </div>
+</div>

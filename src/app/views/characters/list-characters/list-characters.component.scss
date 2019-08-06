@@ -44,7 +44,16 @@
   font-weight: 900;
 }
 
-button{
-  min-width: 15%;;
-  margin-left: 3%;
+.container-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
+
+.container-cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: nowrap
+}
+
