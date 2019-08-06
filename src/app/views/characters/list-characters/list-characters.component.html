@@ -1,9 +1,16 @@
 <div class="container-dark">
-  <div class="row">
+  <div class="row" style="margin-bottom: 3%">
     <div class="col-6">
       <h3>Personagens </h3>
     </div>
+    <div class="col-6" style="text-align: end;">
+      <span>Filtrar por: </span>
+      <button type="button" class="btn btn-outline-success" (click)="filterCharacters('Alive')">Vivo</button>
+      <button type="button" class="btn btn-outline-danger" (click)="filterCharacters('Deceased')">Morto</button>
+      <button type="button" class="btn btn-light" (click)="listCharacters()">Todos</button>
+    </div>
   </div>
+
 
   <div class="row">
     <div class="col-12">

@@ -16,8 +16,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
 import {SidebarModule} from 'ng-sidebar';
 import {MenuItens} from './layout/base/menu-itens';
+import {FormsModule} from '@angular/forms';
 
 // import { GlobalErrorHandler } from './classes/core/global-error-handler';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 registerLocaleData(localePT, 'pt');
 
@@ -33,6 +35,8 @@ registerLocaleData(localePT, 'pt');
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
+    AngularFontAwesomeModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',

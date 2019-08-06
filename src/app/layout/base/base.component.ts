@@ -1,8 +1,5 @@
-import {Component, EventEmitter, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {LoadingService} from '../../services/core/loading.service';
-import {MenuItens} from './menu-itens';
-import {SidebarModule} from 'ng-sidebar';
+import {Component} from '@angular/core';
+import {EventService} from '../../services/core/event.service';
 
 @Component({
   selector: 'app-base',
@@ -11,4 +8,11 @@ import {SidebarModule} from 'ng-sidebar';
 })
 export class BaseComponent {
   isShown:boolean=false;
+  search;
+
+  constructor(private eventService: EventService) {}
+
+  onSubmit() {
+    this.eventService.search.emit(this.search);
+  }
 }

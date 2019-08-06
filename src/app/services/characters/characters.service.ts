@@ -12,9 +12,12 @@ export class CharactersService {
   constructor(private apiService: ApiService) {
   }
 
-  public list(limit, offset, loadingMode: ('circle' | 'loading_bar' | 'fullscreen' | 'none') = 'fullscreen'): Promise<any> {
-
-    this.entityName = `characters?limit=${limit}&offset=${offset}`;
+  public list(limit, offset, name = null,  loadingMode: ('circle' | 'loading_bar' | 'fullscreen' | 'none') = 'fullscreen'): Promise<any> {
+    if (name) {
+      this.entityName = `characters?limit=${limit}&offset=${offset}&name=${name}`;
+    } else {
+      this.entityName = `characters?limit=${limit}&offset=${offset}`;
+    }
 
     return this.apiService
       .getBuilder({
