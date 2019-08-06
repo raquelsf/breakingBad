@@ -1,0 +1,22 @@
+.align {
+  position: absolute;
+  bottom: 5%;
+}
+
+@media screen and (max-width: 960px) {
+  .card-columns {
+    column-count: 1;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .card-columns {
+    column-count: 4;
+  }
+}
+
+
+.pagination{
+  margin: 1px;
+  cursor: pointer;
+}

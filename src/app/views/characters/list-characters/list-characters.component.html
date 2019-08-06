@@ -1,2 +1,30 @@
-<div class="bg-dark">
-</div>
+<div class="container-dark">
+  <div class="row">
+    <div class="col-6">
+      <h3>Personagens </h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div class="card-columns">
+        <div class="card" *ngFor="let character of characters" style="min-height: 450px !important;">
+          <img class="card-img-top" src="{{character.img}}" alt="Card image cap" style="height: 420px">
+          <div class="card-body align">
+            <h5 class="card-title">{{character.name}}</h5>
+            <p class="card-text">
+              <small class="text-muted">{{character.birthday}}</small>
+            </p>
+            <p class="card-text">
+              <small class="text-muted" *ngFor="let occupation of character.occupation">{{occupation}}.</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="margin: 0 auto;">
+      <div class="col-12" style="text-align: center">
+        <span style="margin: 5%; cursor: pointer" *ngFor="let page of pagination;index as i" (click)="listCharacters(page.limit, page.offset)">{{i+1}}</span>
+      </div>
+    </div>
+  </div>
