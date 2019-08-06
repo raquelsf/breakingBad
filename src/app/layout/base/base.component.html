@@ -1,0 +1,43 @@
+<div class="app-body">
+  <!-- Main content -->
+  <nav class="navbar navbar-dark bg-dark navbar-expand-lg">
+    <div class="container-fluid px-0">
+      <div class="row w-100">
+        <div class="col-2">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation" (click)="isShown = !isShown" >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <div class="col-10">
+          <div class="collapse justify-content-center navbar-collapse" [ngClass]="{ 'show': isShown }" id="navbarTogglerDemo03">
+            <img src="/assets/images/breaking-bad-logo.png" width="128px">
+            <ul class="navbar-nav mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a class="nav-link" href="#" (click)="isShown = false" >Personagens</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" (click)="isShown = false" >Episodios</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" (click)="isShown = false" >Sugestoẽs</a>
+              </li>
+            </ul>
+
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Pesquisar" aria-label="Pesquisar">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Pesquisar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <main class="main">
+    <div class="container-fluid">
+      <router-outlet></router-outlet>
+    </div><!-- /.container-fluid -->
+  </main>
+
+</div>
+

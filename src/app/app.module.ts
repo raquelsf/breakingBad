@@ -1,18 +1,70 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {AppRoutingModule} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {ErrorComponent} from './views/error/error.component';
+import {BaseComponent} from './layout/base/base.component';
+import {LoadingBarModule} from '@ngx-loading-bar/core';
+import {ToastrModule} from 'ngx-toastr';
+import {ErrorHandler, LOCALE_ID, NgModule} from '@angular/core';
+import {LocationStrategy, HashLocationStrategy, CommonModule} from '@angular/common';
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import {registerLocaleData} from '@angular/common';
+import localePT from '@angular/common/locales/pt-PT';
+import {LoadingService} from './services/core/loading.service';
+import {ApiService} from './services/core/api.service';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HttpClientModule} from '@angular/common/http';
+import {SidebarModule} from 'ng-sidebar';
+import {MenuItens} from './layout/base/menu-itens';
+
+// import { GlobalErrorHandler } from './classes/core/global-error-handler';
+
+registerLocaleData(localePT, 'pt');
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorComponent,
+    BaseComponent
   ],
   imports: [
+    CommonModule,
+    AppRoutingModule,
     BrowserModule,
-    AppRoutingModule
+    BrowserAnimationsModule,
+    HttpClientModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      preventDuplicates: true,
+      iconClasses: {
+        error: 'toast-error',
+        info: 'toast-info',
+        success: 'toast-success',
+        warning: 'toast-warning',
+      }
+    }),
+    LoadingBarModule,
+    SidebarModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    },
+    // {
+    //   provide : ErrorHandler,
+    //   useClass: GlobalErrorHandler
+    // },
+    {
+      provide: LOCALE_ID,
+      useValue: 'pt_PT'
+    },
+    ApiService,
+    LoadingService,
+    MenuItens
+  ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}
