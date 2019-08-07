@@ -4,7 +4,8 @@
       <h3>Episódios </h3>
     </div>
   </div>
-  <div class="container-list" *ngFor="let episode of episodes | paginate: { itemsPerPage: 5, currentPage: page }; let i = index">
+  <div class="container-list"
+       *ngFor="let episode of episodes | paginate: { itemsPerPage: 5, currentPage: page }; let i = index">
     <div style="width: 20%">
       <h3>{{episode.title}}</h3>
       <small>Temporada {{episode.season}} - Episódio {{episode.episode}}</small>
@@ -14,13 +15,38 @@
     </div>
     <div style="width: 60%" class="container-character">
       Personagens:
-      <span *ngFor="let character of episode.characters">
+      <span *ngFor="let character of episode.characters" (click)="openModal(content, character)">
        {{character}}
       </span>
     </div>
   </div>
 
   <div>
-    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+                         nextLabel="Próximo"></pagination-controls>
   </div>
 </div>
+
+<!-- Modal -->
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{character.name}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <img class="card-img-top" src="{{character.img}}" alt="Card image cap" style="height: 420px">
+    <div class="card-body align">
+
+      <h5>{{character.name}}</h5>
+      <p>
+        <small>{{character.birthday}}</small>
+      </p>
+      <p>
+        <small
+        *ngFor="let occupation of character.occupation">{{occupation}}.</small>
+      </p>
+    </div>
+  </div>
+</ng-template>

@@ -3,6 +3,19 @@
 @import '~ngx-toastr/toastr';
 
 
+@media screen and (max-width: 960px) {
+  .app-body{
+    background-color: #000000 !important;
+    padding: 0 0 0 0;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .app-body{
+    background-color: #000000 !important;
+    padding: 0 10% 0 10%;
+  }
+}
 
 .bg-dark {
   background-color: #000000 !important;
@@ -11,11 +24,6 @@
 .container-dark {
   background-color: #000000 !important;
   margin-top: 3%;
-}
-
-.app-body{
-  background-color: #000000 !important;
-  padding: 0 10% 0 10%;
 }
 
 .container-fluid {
@@ -40,3 +48,13 @@
 .ngx-pagination a {
   color: #ffffff;
 }
+//
+//.modal-body{
+//  background-color: #000000;
+//}
+//
+//.modal-header {
+//  background-color: #000000;
+//  color: white;
+//  border-color: black;
+//}

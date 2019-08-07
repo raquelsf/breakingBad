@@ -1,7 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {EpisodesService} from '../../../services/episodes/episodes.service';
 import {Episodes} from '../../../interfaces/episodes/episodes';
 import {EventService} from '../../../services/core/event.service';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {CharactersService} from '../../../services/characters/characters.service';
+import {TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list-epidodes',
@@ -12,7 +15,15 @@ export class ListEpidodesComponent implements OnInit {
   public episodes = [{} as Episodes];
   public allEpisodes = [{} as Episodes];
   public page = 1;
-  constructor(private episodesService: EpisodesService, private eventService: EventService) {
+  public character;
+
+  constructor(private episodesService: EpisodesService,
+              private eventService: EventService,
+              private charactersService: CharactersService,
+              private modalService: NgbModal,
+              private translateService: TranslateService) {
+
+    this.translateService.setDefaultLang('pt-br');
     this.subscribeSearch();
   }
 
@@ -32,7 +43,7 @@ export class ListEpidodesComponent implements OnInit {
    *
    **/
 
-  listEpisodes( name = null) {
+  listEpisodes(name = null) {
     this.episodesService.list(name).then(res => {
       this.episodes = res;
       this.allEpisodes = res;
@@ -49,4 +60,21 @@ export class ListEpidodesComponent implements OnInit {
     });
 
   }
+
+  openModal(content, character) {
+    this.charactersService.list(character).then(res => {
+      this.character = res[0];
+
+      if (res.length) {
+        this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+          // this.closeResult = `Closed with: ${result}`;
+        }, (reason) => {
+          // this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        });
+      }
+
+    });
+
+  }
+
 }

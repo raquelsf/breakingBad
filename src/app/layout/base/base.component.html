@@ -10,7 +10,7 @@
         </button>
 
         <div class="collapse navbar-collapse" [ngClass]="{ 'show': isShown }" id="navbarTogglerDemo03">
-          <img src="/assets/images/breaking-bad-logo.png" width="128px">
+          <img src="/assets/images/breaking-bad-logo.png" width="20%">
           <ul class="navbar-nav mt-2 mt-lg-0">
             <li class="nav-item active">
               <a class="nav-link"[routerLink]="['/']"  (click)="isShown = false">Personagens</a>
@@ -23,13 +23,15 @@
             </li>
           </ul>
         </div>
+        <div>
+          <form class="form-inline my-2 my-lg-0">
+            <input class="form-control" type="search" placeholder="Pesquisar" name="search" [(ngModel)]="search"
+                   aria-label="Pesquisar">
 
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control" type="search" placeholder="Pesquisar" name="search" [(ngModel)]="search"
-                 aria-label="Pesquisar">
+            <i class="fa fa-search" (click)="onSubmit()"></i>
+          </form>
+        </div>
 
-          <i class="fa fa-search" (click)="onSubmit()"></i>
-        </form>
       </div>
     </div>
   </nav>
