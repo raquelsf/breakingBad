@@ -15,7 +15,7 @@
     </div>
     <div style="width: 60%" class="container-character">
       Personagens:
-      <span *ngFor="let character of episode.characters" (click)="openModal(content, character)">
+      <span class="cursor" *ngFor="let character of episode.characters" (click)="openModal(content, character)">
        {{character}}
       </span>
     </div>

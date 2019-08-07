@@ -13,6 +13,7 @@ export class ListCharactersComponent implements OnInit {
   public characters = [];
   public allCharacters = [{} as Characters];
   public page;
+  public search;
 
   constructor(private charactersService: CharactersService,
               private eventService: EventService,
@@ -25,6 +26,7 @@ export class ListCharactersComponent implements OnInit {
   subscribeSearch() {
     this.eventService.search.subscribe((search) => {
       this.listCharacters(search);
+      this.search = search;
     });
   }
 

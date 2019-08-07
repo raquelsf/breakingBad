@@ -17,6 +17,8 @@ i {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: baseline;
+
   }
 }
 
@@ -27,4 +29,9 @@ i {
     justify-content: space-between;
     align-items: flex-start;
   }
+}
+
+.form {
+  margin-top: 20px !important;
+  width: 300px;
 }

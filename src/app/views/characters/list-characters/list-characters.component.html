@@ -1,13 +1,18 @@
 <div class="container-dark">
-  <div class="container-header">
+  <div class="container-header" *ngIf="!search">
     <div>
-      <h3>Personagens </h3>
+      <h3 >Personagens </h3>
     </div>
     <div>
       <span>Filtrar por: </span>
       <button type="button" class="btn btn-outline-success" (click)="filterCharacters('Alive')">Vivo</button>
       <button type="button" class="btn btn-outline-danger" (click)="filterCharacters('Deceased')">Morto</button>
       <button type="button" class="btn btn-light" (click)="listCharacters()">Todos</button>
+    </div>
+  </div>
+  <div class="container-header" *ngIf="search">
+    <div>
+      <h3 *ngIf="search">Você pesquisou por "{{search}}" </h3>
     </div>
   </div>
 
