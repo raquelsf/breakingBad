@@ -12,11 +12,11 @@ export class EpisodesService {
   constructor(private apiService: ApiService) {
   }
 
-  public list(limit, offset, name = null,  loadingMode: ('circle' | 'loading_bar' | 'fullscreen' | 'none') = 'fullscreen'): Promise<any> {
+  public list(name = null, loadingMode: ('circle' | 'loading_bar' | 'fullscreen' | 'none') = 'fullscreen'): Promise<any> {
     if (name) {
-      this.entityName = `episodes?limit=${limit}&offset=${offset}&name=${name}`;
+      this.entityName = `episodes?&name=${name}`;
     } else {
-      this.entityName = `episodes?limit=${limit}&offset=${offset}`;
+      this.entityName = `episodes`;
     }
 
     return this.apiService
@@ -35,24 +35,4 @@ export class EpisodesService {
       });
   }
 
-
-  public getAll(loadingMode: ('circle' | 'loading_bar' | 'fullscreen' | 'none') = 'fullscreen'): Promise<any> {
-
-    this.entityName = `episodes`;
-
-    return this.apiService
-      .getBuilder({
-        path: this.entityName,
-        useAuthorization: true,
-        loadingInfoMode: loadingMode
-      } as RequestBuilder)
-      .get()
-      .then(res => {
-        if (typeof res !== 'undefined') {
-          return res;
-        }
-
-        throw Error('Erro ao listar Episodios');
-      });
-  }
 }

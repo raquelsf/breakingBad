@@ -12,7 +12,7 @@ import {EventService} from '../../../services/core/event.service';
 export class ListCharactersComponent implements OnInit {
   public characters = [];
   public allCharacters = [{} as Characters];
-  public pagination = [];
+  public page;
 
   constructor(private charactersService: CharactersService,
               private eventService: EventService,
@@ -24,14 +24,12 @@ export class ListCharactersComponent implements OnInit {
 
   subscribeSearch() {
     this.eventService.search.subscribe((search) => {
-      console.log(search);
-      this.listCharacters(8, 1, search);
+      this.listCharacters(search);
     });
   }
 
   ngOnInit() {
     this.listCharacters();
-    this.getAll();
   }
 
   /**
@@ -39,37 +37,12 @@ export class ListCharactersComponent implements OnInit {
    * @Input limit - limite de itens a serem buscaodos, offset - Inicio da busca
    **/
 
-  listCharacters(limit = 8, offset = 1, name = null) {
-    this.charactersService.list(limit, offset, name).then(res => {
+  listCharacters(name = null) {
+    this.charactersService.list(name).then(res => {
       this.characters = res;
+      this.allCharacters = res;
+
     });
-  }
-
-  /**
-   * Busca Todos Personagens para contagem de itens a serem paginados
-   **/
-  getAll() {
-    this.charactersService.getAll().then(
-      res => {
-        this.allCharacters = res;
-        this.getPagination(res);
-      });
-  }
-
-  getPagination(all) {
-    const limit = 8;
-    const total = all.length;
-    let pages = total / limit;
-
-    while (pages > 0) {
-      this.pagination.push({
-        limit: limit,
-        offset: Math.ceil(limit * pages)
-      });
-
-      pages--;
-    }
-
   }
 
   filterCharacters(status) {
@@ -80,8 +53,6 @@ export class ListCharactersComponent implements OnInit {
         this.characters.push(character);
       }
     });
-
-    this.pagination = [];
 
   }
 

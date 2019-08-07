@@ -4,7 +4,7 @@
       <h3>Episódios </h3>
     </div>
   </div>
-  <div class="container-list" *ngFor="let episode of episodes">
+  <div class="container-list" *ngFor="let episode of episodes | paginate: { itemsPerPage: 5, currentPage: page }; let i = index">
     <div style="width: 20%">
       <h3>{{episode.title}}</h3>
       <small>Temporada {{episode.season}} - Episódio {{episode.episode}}</small>
@@ -20,10 +20,7 @@
     </div>
   </div>
 
-  <div style="margin: 0 auto;">
-    <div>
-      <span style="margin: 5%; cursor: pointer" *ngFor="let page of pagination;index as i"
-            (click)="listEpisodes(page.limit, page.offset)">{{i + 1}}</span>
-    </div>
+  <div>
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
   </div>
 </div>

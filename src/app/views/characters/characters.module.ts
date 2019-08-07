@@ -4,12 +4,14 @@ import { ListCharactersComponent } from './list-characters/list-characters.compo
 import {RouterModule} from '@angular/router';
 import {CharactersRoutes} from './characters.routing';
 import {SharedModule} from '../../shared/shared.module';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
   declarations: [ListCharactersComponent],
   imports: [
     CommonModule,
     SharedModule,
+    NgxPaginationModule,
     RouterModule.forChild(CharactersRoutes)
   ]
 })

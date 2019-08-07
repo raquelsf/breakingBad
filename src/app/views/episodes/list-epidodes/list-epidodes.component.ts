@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {EpisodesService} from '../../../services/episodes/episodes.service';
 import {Episodes} from '../../../interfaces/episodes/episodes';
+import {EventService} from '../../../services/core/event.service';
 
 @Component({
   selector: 'app-list-epidodes',
@@ -8,54 +9,44 @@ import {Episodes} from '../../../interfaces/episodes/episodes';
   styleUrls: ['./list-epidodes.component.scss']
 })
 export class ListEpidodesComponent implements OnInit {
-  public pagination = [];
-  public allEpisodes = [];
   public episodes = [{} as Episodes];
+  public allEpisodes = [{} as Episodes];
+  public page = 1;
+  constructor(private episodesService: EpisodesService, private eventService: EventService) {
+    this.subscribeSearch();
+  }
 
-  constructor(private episodesService: EpisodesService) { }
+  subscribeSearch() {
+    this.eventService.search.subscribe((search) => {
+      this.searchEpisodes(search);
+    });
+  }
 
 
   ngOnInit() {
     this.listEpisodes();
-    this.getAll();
   }
 
   /**
-   * Busca Personagens
-   * @Input limit - limite de itens a serem buscaodos, offset - Inicio da busca
+   * Busca Episodios
+   *
    **/
 
-  listEpisodes(limit = 6, offset = 1, name = null) {
-    this.episodesService.list(limit, offset, name).then(res => {
+  listEpisodes( name = null) {
+    this.episodesService.list(name).then(res => {
       this.episodes = res;
+      this.allEpisodes = res;
     });
   }
 
-  /**
-   * Busca Todos Personagens para contagem de itens a serem paginados
-   **/
-  getAll() {
-    this.episodesService.getAll().then(
-      res => {
-        this.allEpisodes = res;
-        this.getPagination(res);
-      });
-  }
-
-  getPagination(all) {
-    const limit = 6;
-    const total = all.length;
-    let pages = total / limit;
-
-    while (pages > 0) {
-      this.pagination.push({
-        limit: limit,
-        offset: Math.ceil(limit * pages)
-      });
-
-      pages--;
-    }
+  searchEpisodes(status) {
+    this.episodes = [];
+    // @ts-ignore
+    this.allEpisodes.findIndex(episode => {
+      if (episode.title === status) {
+        this.episodes.push(episode);
+      }
+    });
 
   }
-
 }

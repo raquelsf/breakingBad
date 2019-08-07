@@ -13,7 +13,7 @@
 
   <div class="container-cards">
     <div class="card-columns">
-      <div class="card" *ngFor="let character of characters" style="min-height: 450px !important;">
+      <div class="card" *ngFor="let character of characters | paginate: { itemsPerPage: 8, currentPage: page };" style="min-height: 450px !important;">
         <div [class]="character.status">
           <p>{{character.status | translate}}</p>
         </div>
@@ -32,10 +32,7 @@
     </div>
   </div>
 
-  <div style="margin: 0 auto;">
-    <div>
-      <span style="margin: 5%; cursor: pointer" *ngFor="let page of pagination;index as i"
-            (click)="listCharacters(page.limit, page.offset)">{{i + 1}}</span>
-    </div>
+  <div>
+    <pagination-controls (pageChange)="page = $event" previousLabel="Anterior" nextLabel="Próximo"></pagination-controls>
   </div>
 </div>
