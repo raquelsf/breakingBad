@@ -1,0 +1,28 @@
+<div class="container-dark">
+  <div class="header">
+    <div>
+      <h3>Envie sua Sugestão </h3>
+    </div>
+  </div>
+  <div>
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="author">Nome</label>
+        <input class="form-control" type="text" id="author" placeholder="Seu Nome"
+               aria-label="Seu Nome" [formControlName]="'author'">
+        <small *ngIf="form.get('author').hasError('required') && isSubmitted">Nos conte o seu nome
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Mensagem</label>
+        <textarea class="form-control" id="message" rows="5" [formControlName]="'message'"></textarea>
+        <small *ngIf="form.get('message').hasError('required') && isSubmitted">Qual a sua sugestão?
+        </small>
+      </div>
+
+      <button type="button" class="btn btn-success" (click)="onSubmit()">Enviar Sugestão</button>
+
+    </form>
+  </div>
+</div>

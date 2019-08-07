@@ -6,6 +6,7 @@ export const environment = {
   production: false,
 
   api: 'https://www.breakingbadapi.com/api/',
+  suggestions: 'https://frontendtestesamba.free.beeceptor.com/',
 };
 
 /*

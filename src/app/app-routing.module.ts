@@ -19,6 +19,10 @@ const routes: Routes = [
       {
         path: 'episodes',
         loadChildren: './views/episodes/episodes.module#EpisodesModule'
+      },
+      {
+        path: 'suggestions',
+        loadChildren: './views/suggestions/suggestions.module#SuggestionsModule'
       }
     ]
   }
