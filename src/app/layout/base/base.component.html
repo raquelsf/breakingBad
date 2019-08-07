@@ -13,10 +13,10 @@
           <img src="/assets/images/breaking-bad-logo.png" width="128px">
           <ul class="navbar-nav mt-2 mt-lg-0">
             <li class="nav-item active">
-              <a class="nav-link" href="#" (click)="isShown = false">Personagens</a>
+              <a class="nav-link"[routerLink]="['/']"  (click)="isShown = false">Personagens</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" (click)="isShown = false">Episodios</a>
+              <a class="nav-link" [routerLink]="['/episodes']" (click)="isShown = false">Episodios</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#" (click)="isShown = false">Sugestoẽs</a>
